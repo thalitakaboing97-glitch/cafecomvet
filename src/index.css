@@ -1,7 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+.race-footer {
+  margin-top: 40px;
+  padding: 16px 0;
+  opacity: 0.8;
+}
 /* Fundo claro e limpo */
 body {
   background: #ffffff;
