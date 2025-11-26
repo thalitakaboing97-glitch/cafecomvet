@@ -3,7 +3,7 @@ import Footer from "./Footer";
 
 const participants = [
   { name: "Dra. Lorrana", score: 8, emoji: "👩‍⚕️" },
-  { name: "Dra. Jéssica", score: 22, emoji: "👩‍⚕️" },
+  { name: "Dra. Jéssica", score: 9, emoji: "👩‍⚕️" },
   { name: "Dra. Lindalva", score: 10, emoji: "👩‍⚕️" },
   { name: "Dra. Wandila", score: 7, emoji: "👩‍⚕️" },
   { name: "Dr. Davi", score: 3, emoji: "👨‍⚕️" },
