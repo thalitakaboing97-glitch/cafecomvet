@@ -146,3 +146,14 @@ function PodiumCard({ rank, person = {}, borderColor, height = "h-32", first = f
     </div>
   );
 }
+import Ranking from "./components/Ranking";
+
+function App() {
+  return (
+    <div className="app-container">
+      <Ranking />
+    </div>
+  );
+}
+
+export default App;
