@@ -13,22 +13,31 @@ const participants = [
 
 const MAX_SCORE = 48;
 
+// --- Cores Organnact ---
+const colors = {
+  gold: "#FFD700",
+  silver: "#C0C0C0",
+  bronze: "#CD7F32",
+  barDefault: "#4CAF50", // verde Organnact
+  badgeDefault: "#A3D3A1", // tom suave de verde
+  background: "#E8F5E9", // fundo suave
+};
+
 function ProgressBar({ score, rank }) {
   const widthPercent = Math.min((score / MAX_SCORE) * 100, 100);
 
-  // Cores especiais para pódio
-  let barColor = "bg-gray-400";
-  if (rank === 1) barColor = "bg-yellow-400"; // ouro
-  else if (rank === 2) barColor = "bg-gray-400"; // prata
-  else if (rank === 3) barColor = "bg-amber-700"; // bronze
+  let barColor = colors.barDefault;
+  if (rank === 1) barColor = colors.gold;
+  else if (rank === 2) barColor = colors.silver;
+  else if (rank === 3) barColor = colors.bronze;
 
   return (
-    <div className="w-full bg-gray-200 rounded-full h-8 relative overflow-hidden">
+    <div className="w-full bg-gray-200 rounded-full h-8 relative overflow-hidden shadow-sm">
       <div
-        className={`${barColor} h-8 flex items-center justify-end rounded-l-full transition-all duration-1000 ease-out`}
-        style={{ width: `${widthPercent}%` }}
+        className="h-8 flex items-center justify-end rounded-l-full transition-all duration-1000 ease-out"
+        style={{ width: `${widthPercent}%`, backgroundColor: barColor }}
       >
-        <span className="animate-run text-lg mr-2">{score > 0 ? "🏃" : ""}</span>
+        <span className="text-lg mr-2 animate-pulse">{score > 0 ? "🏃" : ""}</span>
       </div>
       <div className="absolute right-0 top-0 h-full flex items-center pr-2">
         <span className="text-xl">🏁</span>
@@ -37,20 +46,24 @@ function ProgressBar({ score, rank }) {
   );
 }
 
-
 function RacingLane({ participant, rank }) {
-  // Emoji pódio
   const medal = rank === 1 ? "🥇" : rank === 2 ? "🥈" : rank === 3 ? "🥉" : "";
+  let badgeColor = colors.badgeDefault;
+  if (rank === 1) badgeColor = colors.gold;
+  else if (rank === 2) badgeColor = colors.silver;
+  else if (rank === 3) badgeColor = colors.bronze;
 
   return (
     <div className="mb-4">
       <div className="flex items-center mb-1">
-        <div className={`w-8 h-8 flex items-center justify-center rounded-full font-bold
-            ${rank === 1 ? "bg-yellow-400" : rank === 2 ? "bg-gray-400" : rank === 3 ? "bg-amber-700" : "bg-gray-300"}`}>
+        <div
+          className="w-10 h-10 flex items-center justify-center rounded-full font-bold text-white shadow-md"
+          style={{ backgroundColor: badgeColor }}
+        >
           #{rank} {medal}
         </div>
-        <div className="ml-2">
-          <p className="font-semibold">{participant.name}</p>
+        <div className="ml-3">
+          <p className="font-semibold text-gray-800">{participant.name}</p>
           <p className="text-sm text-gray-600">{participant.score} pts</p>
         </div>
       </div>
@@ -59,22 +72,19 @@ function RacingLane({ participant, rank }) {
   );
 }
 
-
 function App() {
   return (
-    <div className="min-h-screen bg-[#F5F5F5] flex flex-col items-center p-4">
+    <div className="min-h-screen flex flex-col items-center p-4" style={{ backgroundColor: colors.background }}>
       <header className="text-center mb-6">
-        <h1 className="text-3xl font-bold">🏆 Corrida Organnact</h1>
+        <h1 className="text-3xl sm:text-4xl font-bold text-gray-800">🏆 Corrida Organnact</h1>
         <p className="text-gray-600">Ao atingir 48 pontos, vence!</p>
       </header>
-     
 
-
-     <div className="w-full max-w-xl px-2 sm:px-4">
-  {participants.map((p, index) => (
-    <RacingLane key={index} participant={p} rank={index + 1} />
-  ))}
-</div>
+      <div className="w-full max-w-xl px-2 sm:px-4">
+        {participants.map((p, index) => (
+          <RacingLane key={index} participant={p} rank={index + 1} />
+        ))}
+      </div>
 
       <Footer />
     </div>
@@ -82,3 +92,4 @@ function App() {
 }
 
 export default App;
+
