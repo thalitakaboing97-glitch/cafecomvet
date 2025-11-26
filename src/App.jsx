@@ -13,15 +13,22 @@ const participants = [
 
 const MAX_SCORE = 48;
 
-function ProgressBar({ score }) {
+function ProgressBar({ score, rank }) {
   const widthPercent = Math.min((score / MAX_SCORE) * 100, 100);
+
+  // Cores especiais para pódio
+  let barColor = "bg-gray-400";
+  if (rank === 1) barColor = "bg-yellow-400"; // ouro
+  else if (rank === 2) barColor = "bg-gray-400"; // prata
+  else if (rank === 3) barColor = "bg-amber-700"; // bronze
+
   return (
-    <div className="w-full bg-gray-200 rounded-full h-8 relative">
+    <div className="w-full bg-gray-200 rounded-full h-8 relative overflow-hidden">
       <div
-        className="bg-green-500 h-8 flex items-center justify-end rounded-l-full"
+        className={`${barColor} h-8 flex items-center justify-end rounded-l-full transition-all duration-1000 ease-out`}
         style={{ width: `${widthPercent}%` }}
       >
-        <span className="text-lg mr-2">{score > 0 ? "🏃" : ""}</span>
+        <span className="animate-run text-lg mr-2">{score > 0 ? "🏃" : ""}</span>
       </div>
       <div className="absolute right-0 top-0 h-full flex items-center pr-2">
         <span className="text-xl">🏁</span>
@@ -29,6 +36,7 @@ function ProgressBar({ score }) {
     </div>
   );
 }
+
 
 function RacingLane({ participant, rank }) {
   return (
