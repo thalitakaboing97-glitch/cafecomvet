@@ -73,6 +73,9 @@ function RacingLane({ participant, rank }) {
 }
 
 function App() {
+  // Ordena os participantes do maior para o menor score
+  const sortedParticipants = [...participants].sort((a, b) => b.score - a.score);
+
   return (
     <div className="min-h-screen flex flex-col items-center p-4" style={{ backgroundColor: colors.background }}>
       <header className="text-center mb-6">
@@ -81,7 +84,7 @@ function App() {
       </header>
 
       <div className="w-full max-w-xl px-2 sm:px-4">
-        {participants.map((p, index) => (
+        {sortedParticipants.map((p, index) => (
           <RacingLane key={index} participant={p} rank={index + 1} />
         ))}
       </div>
@@ -92,4 +95,5 @@ function App() {
 }
 
 export default App;
+
 
