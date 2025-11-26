@@ -54,6 +54,8 @@ function App() {
         <h1 className="text-3xl font-bold">🏆 Corrida Organnact</h1>
         <p className="text-gray-600">Ao atingir 48 pontos, vence!</p>
       </header>
+      <div className={`barra ${index === 0 ? 'lider' : ''}`} ... ></div>
+
 
       <div className="w-full max-w-xl">
         {participants.map((p, index) => (
