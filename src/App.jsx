@@ -70,11 +70,11 @@ function App() {
      
 
 
-      <div className="w-full max-w-xl">
-        {participants.map((p, index) => (
-          <RacingLane key={index} participant={p} rank={index + 1} />
-        ))}
-      </div>
+     <div className="w-full max-w-xl px-2 sm:px-4">
+  {participants.map((p, index) => (
+    <RacingLane key={index} participant={p} rank={index + 1} />
+  ))}
+</div>
 
       <Footer />
     </div>
