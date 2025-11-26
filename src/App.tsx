@@ -1,35 +1,50 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  // LISTA DOS VETERINÁRIOS
+  const veterinarios = [
+    { nome: "Licia", pontos: 2 },
+    { nome: "Juca", pontos: 4 },
+    { nome: "Barbarah", pontos: 6 },
+    { nome: "Leandro", pontos: 8 },
+    { nome: "Liz", pontos: 15 },
+    { nome: "Tomas", pontos: 6 },
+    { nome: "Luiz", pontos: 7 },
+    { nome: "Bruno", pontos: 9 },
+    { nome: "Liana", pontos: 1 },
+    { nome: "Tatiana", pontos: 10 },
+  ];
+
+  // ORDENA POR MAIOR PONTUAÇÃO
+  veterinarios.sort((a, b) => b.pontos - a.pontos);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="container">
+      <h1>🏆 Ranking Organnact</h1>
+      <p className="sub">Meta: 48 pontos</p>
+
+      {veterinarios.map((v) => {
+        const porcentagem = Math.min((v.pontos / 48) * 100, 100);
+        const venceu = v.pontos >= 48;
+
+        return (
+          <div className="item" key={v.nome}>
+            <div className="nome">
+              {v.nome} {venceu && <span className="vencedor">🏆 VENCEU!</span>}
+            </div>
+            <div className="pontos">{v.pontos} pts</div>
+
+            <div className="barra">
+              <div
+                className="progresso"
+                style={{ width: `${porcentagem}%` }}
+              ></div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
 }
 
-export default App
+export default App;
