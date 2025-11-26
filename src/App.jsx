@@ -62,7 +62,7 @@ function RacingLane({ participant, rank }) {
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center p-4">
+    <div className="min-h-screen bg-[#F5F5F5] flex flex-col items-center p-4">
       <header className="text-center mb-6">
         <h1 className="text-3xl font-bold">🏆 Corrida Organnact</h1>
         <p className="text-gray-600">Ao atingir 48 pontos, vence!</p>
