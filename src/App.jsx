@@ -158,3 +158,6 @@ function App() {
 }
 
 export default App;
+<footer className="race-footer text-center py-4 text-gray-600 text-sm">
+  <p>Atualização em tempo real</p>
+</footer>
