@@ -39,21 +39,26 @@ function ProgressBar({ score, rank }) {
 
 
 function RacingLane({ participant, rank }) {
+  // Emoji pódio
+  const medal = rank === 1 ? "🥇" : rank === 2 ? "🥈" : rank === 3 ? "🥉" : "";
+
   return (
     <div className="mb-4">
       <div className="flex items-center mb-1">
-        <div className="w-8 h-8 flex items-center justify-center bg-yellow-300 rounded-full font-bold">
-          #{rank}
+        <div className={`w-8 h-8 flex items-center justify-center rounded-full font-bold
+            ${rank === 1 ? "bg-yellow-400" : rank === 2 ? "bg-gray-400" : rank === 3 ? "bg-amber-700" : "bg-gray-300"}`}>
+          #{rank} {medal}
         </div>
         <div className="ml-2">
           <p className="font-semibold">{participant.name}</p>
           <p className="text-sm text-gray-600">{participant.score} pts</p>
         </div>
       </div>
-      <ProgressBar score={participant.score} />
+      <ProgressBar score={participant.score} rank={rank} />
     </div>
   );
 }
+
 
 function App() {
   return (
